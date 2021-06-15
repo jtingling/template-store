@@ -1,7 +1,18 @@
-import fetchProducts from '../../adapters/Products/products'
-import { useEffect, useState } from 'react'
+import { getAllProducts } from '../../adapters/index'
 
-module.export = async function getAllProducts() {
-    const products = await fetchProducts;
-    return products;
+const getProductByType = async (productType) => {
+    const products = await getAllProducts();
+
+    switch(productType) {
+        case "SHOES":
+            return products.filter(product => product.productType === "SHOES" );
+        case "ACCESSORIES":
+            return products.filter((product) => { return product.productType === "ACCESSORIES"});
+        case "PAINTINGS":
+            return products.filter((product) => { return product.productType === "PAINTINGS"});
+        default:
+            return "Category not found"
+    }
 }
+
+export { getProductByType };
