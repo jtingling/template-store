@@ -1,26 +1,29 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { useEffect } from 'react';
-import getProducts from '../adapters/Products/products'
-import getAllProducts from '../components/Products/bl';
+import { getAllProducts, getProductCollections } from '../adapters/index'
 
 export async function getStaticProps() {
-  const response = getAllProducts;
-  let products = await response.map(product => product)
-  console.log(products)
+  const products = await getAllProducts();
   return {
-    props: {
-      products
-    }
+      props: {
+          products,
+      },
   }
 }
+
 export default function Home({products}) {
 
   return (
     <div className={styles.container}>
-      {console.log(products)}
       <main>
+        <div>
+          {products && console.log(products)}
+          <Link href="/shoes"><a>shoes</a></Link><br/>
+          <Link href="/paintings"><a>paintings</a></Link>
+        </div>
       </main>
       <footer>
       </footer>
