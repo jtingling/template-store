@@ -20,9 +20,9 @@ export default function Home({products}) {
     <div className={styles.container}>
       <main>
         <div>
-          {products && console.log(products)}
-          <Link href="/shoes"><a>shoes</a></Link><br/>
-          <Link href="/paintings"><a>paintings</a></Link>
+          <Link href="/shoes/"><a>shoes</a></Link><br/>
+          <Link href="/paintings/"><a>paintings</a></Link><br/>
+          <Link href="/accessories/"><a>accessories</a></Link>
         </div>
       </main>
       <footer>
