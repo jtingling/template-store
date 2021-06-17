@@ -2,8 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getProductByType } from '../../components/Products/bl';
-import Products from '../../components/Products/Products'
-
+import Layout from '../../components/Products/Layout'
 export async function getStaticProps() {
     const accessories = await getProductByType("ACCESSORIES")
     return {
@@ -18,13 +17,9 @@ export default function Paintings ({ accessories }) {
     return (
         <div>
             <Head>
-                <title>Find your favourite painting</title>
+                <title>Find your favourite accessories</title>
             </Head>
-            <ul>
-            {
-                accessories.map((accessory)=> { return <li key={accessory.id}><Link href={`/accessories/${accessory.handle}`}><a>{accessory.title}</a></Link></li>})
-            }
-            </ul>
+            <Layout products={accessories} category="accessories"/>
         </div>
     )
 }
