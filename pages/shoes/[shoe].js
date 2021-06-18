@@ -1,11 +1,10 @@
 import { getProductByHandle } from "../../adapters";
 import { getProductByType } from "../../components/Products/bl"
+import ProductDescription from "../../components/Products/ProductDescription";
 
-export default function Shoe( { params }) {
-    console.log(params)
+export default function Shoe( { shoe }) {
     return (
-        <h1>Hello
-        </h1>
+        <ProductDescription product={shoe}/>
     )
 }
 
@@ -22,10 +21,9 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
     const shoe = await getProductByHandle(params.shoe)
-    console.log(shoe);
     return {
         props: {
-            params
+            shoe
         }
     }
 }

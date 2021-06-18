@@ -1,11 +1,10 @@
 import { getProductByHandle } from "../../adapters";
 import { getProductByType } from "../../components/Products/bl"
-
-export default function Accessory( { params }) {
-    console.log(params)
+import ProductDescription from "../../components/Products/ProductDescription";
+export default function Accessory( { accessory }) {
+    console.log(accessory)
     return (
-        <h1>Hello
-        </h1>
+        <ProductDescription product={accessory}/>
     )
 }
 
@@ -25,7 +24,7 @@ export async function getStaticProps({ params }) {
     console.log(accessory);
     return {
         props: {
-            params
+            accessory
         }
     }
 }

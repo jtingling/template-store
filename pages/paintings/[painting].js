@@ -1,11 +1,10 @@
 import { getProductByHandle } from "../../adapters";
 import { getProductByType } from "../../components/Products/bl"
+import ProductDescription from "../../components/Products/ProductDescription";
 
-export default function Painting( { params }) {
-    console.log(params)
+export default function Painting( { painting }) {
     return (
-        <h1>Hello
-        </h1>
+        <ProductDescription product={painting}/>
     )
 }
 
@@ -25,7 +24,7 @@ export async function getStaticProps({ params }) {
     console.log(painting);
     return {
         props: {
-            params
+            painting
         }
     }
 }
