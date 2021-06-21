@@ -1,4 +1,4 @@
-export { client } from './auth'
+export { client, unsplash } from './auth'
 export { createCheckout, getCheckout } from './Checkout/checkout'
 export { addItemToCart, removeItemFromCart, updateCart } from '../adapters/Checkout/lineItems'
 export { getAllProducts, getSingleProduct, getProductByHandle } from '../adapters/Products/products'
