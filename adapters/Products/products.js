@@ -1,7 +1,7 @@
 import { client } from '../index'
 
-async function getAllProducts() {
-    const response = await client.product.fetchAll(100); //page size
+async function getAllProducts(pageSize = 100) {
+    const response = await client.product.fetchAll(pageSize); //page size
     const products = response.map( product => JSON.parse(JSON.stringify(product)))
     return products
 }
