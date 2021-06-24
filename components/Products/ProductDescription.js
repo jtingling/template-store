@@ -14,10 +14,8 @@ export default function ProductDescription({ product }) {
     const [isSOpen, setIsSOpen] = useState(false)
     const [isCOpen, setIsCOpen] = useState(false)
     const [isHOpen, setIsHOpen] = useState(false)
-    console.log(product)
-
     return (
-        <Container fluid className="mx-0 px-0">
+        <Container fluid className="mx-0 px-0"> 
             <Row className="d-flex flex-column flex-sm-row">
                 <Col>
                     <Carousel fade >
