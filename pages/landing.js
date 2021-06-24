@@ -1,10 +1,16 @@
 import { unsplash } from '../adapters/index'
 import Head from 'next/head'
+import Image from 'next/image'
+import { useState, useEffect } from 'react';
 import Hero from '../components/Landing/Hero';
 import CategoryCard from '../components/Landing/Card'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Button from 'react-bootstrap/Button'
+import Showcase from '../components/Landing/Showcase';
+import content from '../components/Landing/descriptions.json';
+
 
 export async function getServerSideProps() {
     const response = await unsplash.photos.getRandom({ collectionIds: ["936583"] });
@@ -18,6 +24,20 @@ export async function getServerSideProps() {
 }
 
 export default function Landing({ blurHash, image }) {
+    const [width, setWidth] = useState(0);
+    const [height, setHeight] = useState(0)
+    if (process.browser) {
+        useEffect(() => {
+            if (document.children[0].clientHeight < 568) {
+                setHeight(document.children[0].clientHeight)
+            } else {
+                setHeight(document.children[0].clientHeight)
+            }
+        }, [document.children[0].clientHeight])
+        useEffect(() => {
+            setWidth(document.children[0].scrollWidth)
+        }, [document.children[0].scrollWidth])
+    }
 
     return (
         <div>
@@ -52,6 +72,38 @@ export default function Landing({ blurHash, image }) {
                         of “Starry Night” stretches past our ordinary perceptions and into the unknown.</p>
                 </Row>
             </Container>
+            <div >
+                <Container fluid className="m-0 p-0 mt-5">
+                    <div className="position-relative">
+                        <Image src="https://cdn.shopify.com/s/files/1/0288/6926/3438/files/Web1_1728x.png?v=1593081132" width={width} height={height} />
+                        {
+                            width < 576 ? <div className="bg-white position-absolute w-80 h-30 top-80 start-10">
+                                <div>
+                                    <p>{content.shirts.astro.feature}</p>
+                                    <p>{content.shirts.astro.title}</p>
+                                    <div>
+                                        {content.shirts.astro.content}
+                                        <Button>Shop Now</Button>
+                                    </div>
+                                </div>
+                            </div> :
+                                <div className="bg-white position-absolute w-30 h-60 top-10 start-10">
+                                    <div>
+                                        <p>{content.shirts.astro.feature}</p>
+                                        <p>{content.shirts.astro.title}</p>
+                                        <div>
+                                            {content.shirts.astro.content}
+                                            <Button>Shop Now</Button>
+                                        </div>
+                                    </div>
+                                </div>
+                        }
+                    </div>
+                </Container>
+            </div>
+            <div>
+                <Showcase/>
+            </div>
 
         </div>
 
