@@ -6,25 +6,13 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
+import { useClientHeight, useClientWidth } from '../hooks';
 
 export default function Hero({ blurHash, image }) {
     const [hero, setHero] = useState(false)
-    const [width, setWidth] = useState(0);
-    const [height, setHeight] = useState(0)
     const [loadImg, setLoadImg] = useState(false)
-
-    if (process.browser) {
-        useEffect(() => {
-            if (document.children[0].clientHeight < 568) {
-                setHeight(document.children[0].clientHeight)
-            } else {
-                setHeight(document.children[0].clientHeight)
-            }
-        }, [document.children[0].clientHeight])
-        useEffect(() => {
-            setWidth(document.children[0].scrollWidth)
-        }, [document.children[0].scrollWidth])
-    }
+    const width = useClientWidth();
+    const height = useClientHeight();
 
     useEffect(() => {
         setTimeout(() => {
@@ -36,17 +24,17 @@ export default function Hero({ blurHash, image }) {
         <div>
             <div>
                 <div>
-                <Fade in={!loadImg} unmountOnExit={true} onExiting={() => setHero(true)}>
-                    <Blurhash hash={blurHash} resolutionX={32} resolutionY={32} width={(width)} height={(height)} />
-                </Fade>
+                    <Fade in={!loadImg} unmountOnExit={true} onExiting={() => setHero(true)}>
+                        <Blurhash hash={blurHash} resolutionX={32} resolutionY={32} width={(width)} height={(height)} />
+                    </Fade>
                 </div>
-                <div>
-                <Fade in={loadImg && hero} timeout={2000}>
-                    <Image src={(image + `&w=${width}` + `&h=${height}`)} width={width} height={(height)} priority={true} priority={true} />
-                </Fade>
+                <div >
+                    <Fade in={loadImg && hero} timeout={2000}>
+                        <Image src={(image + `&w=${width}` + `&h=${height}`)} width={width} height={(height)} priority={true}/>
+                    </Fade>
                 </div>
             </div>
-            <div className="position-absolute top-50 start-50 translate-middle">
+            <div className="position-absolute top-50 start-50 translate-middle" >
                 <Fade in={loadImg && hero} timeout={2000}>
                     <Container>
                         <Row className="flex-column text-center">
