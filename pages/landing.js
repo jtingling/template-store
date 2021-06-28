@@ -1,7 +1,6 @@
 import { unsplash } from '../adapters/index'
 import Head from 'next/head'
 import Image from 'next/image'
-import { useState, useEffect } from 'react';
 import Hero from '../components/Landing/Hero';
 import CategoryCard from '../components/Landing/Card'
 import Container from 'react-bootstrap/Container'
@@ -10,7 +9,7 @@ import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Showcase from '../components/Landing/Showcase';
 import content from '../components/Landing/descriptions.json';
-
+import { useClientWidth, useClientHeight } from '../components/hooks';
 
 export async function getServerSideProps() {
     const response = await unsplash.photos.getRandom({ collectionIds: ["936583"] });
@@ -24,20 +23,8 @@ export async function getServerSideProps() {
 }
 
 export default function Landing({ blurHash, image }) {
-    const [width, setWidth] = useState(0);
-    const [height, setHeight] = useState(0)
-    if (process.browser) {
-        useEffect(() => {
-            if (document.children[0].clientHeight < 568) {
-                setHeight(document.children[0].clientHeight)
-            } else {
-                setHeight(document.children[0].clientHeight)
-            }
-        }, [document.children[0].clientHeight])
-        useEffect(() => {
-            setWidth(document.children[0].scrollWidth)
-        }, [document.children[0].scrollWidth])
-    }
+    const width = useClientWidth();
+    const height = useClientHeight();
 
     return (
         <div>
@@ -60,7 +47,7 @@ export default function Landing({ blurHash, image }) {
                     </Col>
                 </Row>
                 <Row >
-                    <iframe src="//www.youtube.com/embed/YNdS5wqMj7c?rel=0&amp;showinfo=0&amp;vq=720" frameBorder="0" allowfullscreen="" height={600} width={800}></iframe>
+                    <iframe src="//www.youtube.com/embed/YNdS5wqMj7c?rel=0&amp;showinfo=0&amp;vq=720" frameBorder="0" allowFullScreen="" height={600} width={800}></iframe>
                 </Row>
                 <Row>
                     <h2 className="text-center">STARRY NIGHT WANDERER BOMBER JACKET</h2>
@@ -101,10 +88,17 @@ export default function Landing({ blurHash, image }) {
                     </div>
                 </Container>
             </div>
-            <div>
-                <Showcase/>
+            <div className="mt-5">
+                <Showcase productType="Accessories" />
             </div>
-
+            <div className="text-center text-white bg-dark">
+                <Container>
+                    <Row>
+                        <h3>{content.copy.title}</h3>
+                        <p>{content.copy.text}</p>
+                    </Row>
+                </Container>
+            </div>
         </div>
 
     )
