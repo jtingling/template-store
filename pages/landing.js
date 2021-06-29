@@ -1,4 +1,5 @@
-import { unsplash } from '../adapters/index'
+import { unsplash, getCheckout, setCheckout } from '../adapters/index'
+import { useState, useEffect } from 'react';
 import Head from 'next/head'
 import Image from 'next/image'
 import Hero from '../components/Landing/Hero';
@@ -25,7 +26,11 @@ export async function getServerSideProps() {
 export default function Landing({ blurHash, image }) {
     const width = useClientWidth();
     const height = useClientHeight();
-
+    const [checkout, setCheckout] = useState(null);
+    useEffect(()=>{
+        const cart = setCheckout();
+        setCheckout(cart);
+    },[])
     return (
         <div>
             <div className="position-relative">
