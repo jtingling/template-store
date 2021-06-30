@@ -1,8 +1,22 @@
-import client from '../index'
+import {client} from '../index'
 
 const addItemToCart = async (checkoutId, items) => {
-    await client.checkout.addLineItems(checkoutId, items);
-    return `${items.length} item(s) added to cart.`
+
+    const lineItemsToAdd = [{
+        variantId: items.id,
+        quantity: 1,
+        customAttributes: [
+            {
+                'key': 'price',
+                'value': items.price
+            },
+            {
+                'key': 'title',
+                'value': items.title,
+            }
+        ]
+    }]
+    await client.checkout.addLineItems(checkoutId, lineItemsToAdd);
 }
 
 const removeItemFromCart = async (checkoutId, items) => {
