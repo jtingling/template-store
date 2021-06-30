@@ -5,8 +5,8 @@ import Carousel from 'react-bootstrap/Carousel'
 import Button from 'react-bootstrap/Button'
 import Collapse from 'react-bootstrap/Collapse'
 import Image from 'next/image'
-import { useState } from 'react'
-import { addItemToCart, getCheckout } from '../../adapters/index';
+import { useState, useEffect } from 'react'
+import { addItemToCart, getCartIdFromStorage, getCheckout} from '../../adapters/index';
 
 
 export default function ProductDescription({ product }) {
@@ -14,8 +14,17 @@ export default function ProductDescription({ product }) {
     const [isSOpen, setIsSOpen] = useState(false)
     const [isCOpen, setIsCOpen] = useState(false)
     const [isHOpen, setIsHOpen] = useState(false)
+    const [cartId, setCartId] = useState(null)
+    const [item, setItem] = useState(null)
+
+    useEffect(()=>{
+        (async ()=> {
+            const id = await getCartIdFromStorage()
+            setCartId(id);
+        })();
+    },[])
     return (
-        <Container fluid className="mx-0 px-0"> 
+        <Container fluid className="mx-0 px-0">
             <Row className="d-flex flex-column flex-sm-row">
                 <Col>
                     <Carousel fade >
@@ -39,17 +48,19 @@ export default function ProductDescription({ product }) {
                     </Row>
                     <Row sm={product.options[0].values}>
                         {
-                            product.options[0].values.map((size) => {
+                            product.options[0].values.map((size, idx) => {
                                 return (
-                                    <Col className="row justify-content-center"><p>{size.value}</p></Col>
+                                    <Col className="row justify-content-center">
+                                        <Button variant="outline-dark" className="w-50" onClick={()=> setItem(product.variants[idx])}>{size.value}</Button>
+                                    </Col>
                                 )
                             }
                             )
                         }
                     </Row>
                     <Row sm={1} className="d-flex flex-column flex-sm-row w-xs-5 w-75 mx-auto">
-                        <Button variant='light' className="my-3 py-3 px-0 mx-0">Add To Cart</Button>
-                        <Button variant='dark' className="py-3 px-0 m-0">Buy It Now</Button>
+                        <Button variant='light' className="my-3 py-3 px-0 mx-0" onClick={()=> addItemToCart(cartId, item)}>Add To Cart</Button>
+                        <Button variant='dark' className="py-3 px-0 m-0" onClick={()=> getCheckout(cartId).webUrl}>Buy It Now</Button>
                     </Row>
                     <Row>
                         <Col>
