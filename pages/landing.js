@@ -14,23 +14,21 @@ import { useClientWidth, useClientHeight } from '../components/hooks';
 
 export async function getServerSideProps() {
     const response = await unsplash.photos.getRandom({ collectionIds: ["936583"] });
-    const heroImg = response.response.urls.raw + "&fit=crop&q=50&dpr=1&fit=max"
+    const heroImg = response.response.urls.raw
     return {
         props: {
             blurHash: response.response.blur_hash,
-            image: heroImg
+            heroImg
         }
     }
 }
 
-export default function Landing({ blurHash, image }) {
+export default function Landing({ blurHash, heroImg }) {
     const width = useClientWidth();
     const height = useClientHeight();
-    const [checkout, setCheckout] = useState(null);
-    useEffect(()=>{
-        const cart = setCheckout();
-        setCheckout(cart);
-    },[])
+
+    const image = heroImg + `&fit=crop&q=50&dpr=1&w=${width}&h=${height}`
+
     return (
         <div>
             <div className="position-relative">
