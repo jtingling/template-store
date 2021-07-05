@@ -5,9 +5,9 @@ import Carousel from 'react-bootstrap/Carousel'
 import Button from 'react-bootstrap/Button'
 import Collapse from 'react-bootstrap/Collapse'
 import Image from 'next/image'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { addItemToCart, getCartIdFromStorage, getCheckout} from '../../adapters/index';
-
+import { CartContext } from '../../contexts/App/index';
 
 export default function ProductDescription({ product }) {
     const [isDOpen, setIsDOpen] = useState(false)
@@ -16,6 +16,7 @@ export default function ProductDescription({ product }) {
     const [isHOpen, setIsHOpen] = useState(false)
     const [cartId, setCartId] = useState(null)
     const [item, setItem] = useState(null)
+    const checkoutContext = useContext(CartContext);
 
     useEffect(()=>{
         (async ()=> {
@@ -59,7 +60,12 @@ export default function ProductDescription({ product }) {
                         }
                     </Row>
                     <Row sm={1} className="d-flex flex-column flex-sm-row w-xs-5 w-75 mx-auto">
-                        <Button variant='light' className="my-3 py-3 px-0 mx-0" onClick={()=> addItemToCart(cartId, item)}>Add To Cart</Button>
+                        <Button variant='light' className="my-3 py-3 px-0 mx-0" 
+                            onClick={ async ()=> {
+                                const clientCheckout = await addItemToCart(cartId, item);
+                                checkoutContext.setCheckout(clientCheckout)
+                            }}>
+                        Add To Cart</Button>
                         <Button variant='dark' className="py-3 px-0 m-0" onClick={()=> getCheckout(cartId).webUrl}>Buy It Now</Button>
                     </Row>
                     <Row>
