@@ -1,28 +1,49 @@
 //import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/App.css'
 import Footer from '../components/Footer';
-import NavBar from '../components/NavBar';
-import Ribbon from '../components/Ribbon'
-import { useEffect, useState } from 'react';
-import { getCheckout, initCheckout } from '../adapters/index';
-function MyApp({ Component, pageProps }) {
-  const [ cart, setCart ] = useState(null)
-  //TODO: add context for Cart so ribbon stays updated without re rendering
-  useEffect(()=>{
-    (async ()=> {
-      await initCheckout()
-      const checkout = await getCheckout(window.localStorage.getItem("cart"));
-      setCart(checkout)
-    })()
+import NavBar from '../components/Navs/NavBar';
+import Ribbon from '../components/Navs/Ribbon'
+import { CartContext } from '../contexts/App';
+import { getCartIdFromStorage, getCheckout } from '../adapters';
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 
-},[])
+function MyApp({ Component, pageProps }) {
+  const [cartId, setCartId] = useState(0);
+  const [ checkout, setCheckout ] = useState(0)
+  const router = useRouter();
+  useEffect(() => {
+    (async () => {
+      const id = await getCartIdFromStorage()
+      setCartId(id);
+    })()
+  }, [])
+  useEffect(()=>{
+    (async () => {
+      const clientCheckout = await getCheckout(cartId);
+      setCheckout(clientCheckout);
+    })()
+  }, [cartId])
+  useEffect(()=>{
+    setCheckout(checkout);
+  }, [checkout.lineItems])
+
   return (
-  <>
-    <NavBar/> {    console.log(cart)}
-    <Component {...pageProps}  />
-    {cart !== null && <Ribbon cart={cart}/>}
-    <Footer/>
-  </>)
+    <>
+      <NavBar />
+      <CartContext.Provider value={{
+        cartId: cartId,
+        setCheckout: setCheckout,
+        checkout: checkout
+      }}>
+        <Component {...pageProps} />
+        {
+          router.pathname !== '/cart' && <Ribbon checkout={checkout}/>
+        }
+        <Footer />
+      </CartContext.Provider>
+    </>
+  )
 }
 
 export default MyApp
