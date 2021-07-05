@@ -9,7 +9,7 @@ export default function Layout({ products, category }) {
             <Row className='row justify-content-center'>
                 {
                     layoutItems.map((item) => {
-                     return <Product product={item} category={category} />
+                     return <Product key={item.id} product={item} category={category} />
                     })
                 }
             </Row>
