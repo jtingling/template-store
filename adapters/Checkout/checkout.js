@@ -11,22 +11,18 @@ const getCheckout = async (checkoutId) => {
 }
 
 const initCheckout = async () => {
-    let cart = window.localStorage.getItem("cart");
     try {
-        if (!cart) {
-            cart = await createCheckout();
-            window.localStorage.setItem("cart", cart.id );
-        }
+        let cart = await createCheckout();
+        window.localStorage.setItem("cart", cart );
     } catch (err) {
         console.log(err)
     }
 }
-
 const getCartIdFromStorage = async () => {
     let cartId = window.localStorage.getItem("cart");
-    if (!cartId) {
+    if (cartId === undefined) {
         await initCheckout();
     }
-    return cartId;
+    return window.localStorage.getItem("cart");
 }
 export { getCheckout, getCartIdFromStorage, initCheckout };
