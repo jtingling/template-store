@@ -10,7 +10,7 @@ import { useRouter } from 'next/router'
 
 function MyApp({ Component, pageProps }) {
   const [cartId, setCartId] = useState(0);
-  const [ checkout, setCheckout ] = useState(0)
+  const [ checkout, setCheckout ] = useState({lineItems: []})
   const router = useRouter();
   useEffect(() => {
     (async () => {
