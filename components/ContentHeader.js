@@ -7,7 +7,7 @@ export default function ContentHeader({image}) {
     return (
         <div className='position-relative'>
             {
-                image !== null && <Image src={image} width={width} height={(height * .33)} layout='responsive'/> // mutiplier to adjust height
+                image !== null && <Image src={image} width={width} height={(height * .50)} layout='responsive'/> // mutiplier to adjust height
             }
         </div>
     )
