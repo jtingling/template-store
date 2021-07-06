@@ -11,7 +11,7 @@ export default function Ribbon( { checkout }) {
     return (
         <>
             {
-                checkout !== 0 ?
+                checkout.lineItems.length !== 0 ?
                     <Container className="fixed-bottom mw-100 bg-dark text-white p-2">
                         <Row className="w-50 text-center align-items-center m-auto">
 
