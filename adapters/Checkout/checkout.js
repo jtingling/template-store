@@ -18,6 +18,20 @@ const initCheckout = async () => {
         console.log(err)
     }
 }
+
+const buyNow = async (variantId) => {
+    let newCheckout;
+    await client.checkout.create().then((checkout) => {
+        newCheckout = checkout;
+    })
+    const itemsToAdd = {
+        variantId: variantId,
+        quantity: 1,
+    }
+    await client.checkout.addLineItems(newCheckout.id, itemsToAdd);
+    return window.location.replace(newCheckout.webUrl)
+}
+
 const getCartIdFromStorage = async () => {
     let cartId = window.localStorage.getItem("cart");
     if (cartId === undefined) {
@@ -25,4 +39,4 @@ const getCartIdFromStorage = async () => {
     }
     return window.localStorage.getItem("cart");
 }
-export { getCheckout, getCartIdFromStorage, initCheckout };
+export { getCheckout, getCartIdFromStorage, initCheckout, buyNow };

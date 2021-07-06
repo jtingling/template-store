@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button'
 import Collapse from 'react-bootstrap/Collapse'
 import Image from 'next/image'
 import { useState, useEffect, useContext } from 'react'
-import { addItemToCart, getCartIdFromStorage, getCheckout } from '../../adapters/index';
+import { addItemToCart, getCartIdFromStorage, buyNow } from '../../adapters/index';
 import { CartContext } from '../../contexts/App/index';
 
 export default function ProductDescription({ product }) {
@@ -83,7 +83,14 @@ export default function ProductDescription({ product }) {
                                     }
                                 }}>
                                 Add To Cart</Button>
-                            <Button variant='dark' className="py-3 px-0 m-0" onClick={() => getCheckout(cartId).webUrl}>Buy It Now</Button>
+                            <Button variant='dark' className="py-3 px-0 m-0" onClick={async () => {
+                                    try {
+                                        await buyNow(item.id)
+                                    } catch (e) {
+                                        setIsError(true)
+                                    }
+                                }}
+                                >Buy It Now</Button>
                         </Row>
                         <Row>
                             <Col>
