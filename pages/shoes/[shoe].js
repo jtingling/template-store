@@ -1,4 +1,4 @@
-import { getProductByHandle } from "../../adapters";
+import { getProductByHandle } from "../../adapters/index";
 import { getProductByType } from "../../components/Products/bl"
 import ProductDescription from "../../components/Products/ProductDescription";
 
