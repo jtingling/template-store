@@ -1,4 +1,5 @@
 import Alert from 'react-bootstrap/Alert'
+import Navbar from 'react-bootstrap/Navbar'
 import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -138,7 +139,7 @@ export default function ProductDescription({ product }) {
                     </Col>
                 </Row>
             </Container>
-            {<Alert className='text-center display-6' show={isError} key={product.id} variant='warning'>Please select a size</Alert>}
+            {<Navbar fixed='bottom' role='alert'><Alert className='text-center display-6' show={isError} key={product.id} variant='warning'>Please select a size</Alert></Navbar>}
             {displayError()}
 
         </>
