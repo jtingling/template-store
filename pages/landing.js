@@ -1,5 +1,4 @@
-import { unsplash, getCheckout, setCheckout } from '../adapters/index'
-import { useState, useEffect } from 'react';
+import { unsplash } from '../adapters/index'
 import Head from 'next/head'
 import Image from 'next/image'
 import Hero from '../components/Landing/Hero';
@@ -9,7 +8,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Showcase from '../components/Landing/Showcase';
-import content from '../components/Landing/descriptions.json';
+import content from '../data/descriptions.json';
 import { useClientWidth, useClientHeight } from '../components/hooks';
 
 export async function getServerSideProps() {
@@ -67,23 +66,23 @@ export default function Landing({ blurHash, heroImg }) {
                     <div className="position-relative">
                         <Image src="https://cdn.shopify.com/s/files/1/0288/6926/3438/files/Web1_1728x.png?v=1593081132" width={width} height={height} />
                         {
-                            width < 576 ? <div className="bg-white position-absolute w-80 h-30 top-80 start-10">
-                                <div>
-                                    <p>{content.shirts.astro.feature}</p>
-                                    <p>{content.shirts.astro.title}</p>
-                                    <div>
-                                        {content.shirts.astro.content}
-                                        <Button>Shop Now</Button>
+                            width < 576 ? <div className="bg-white position-absolute top-60 bottom-0 start-5 end-5">
+                                <div className='text-center'>
+                                    <p className='fs-6'>{content.shirts.astro.feature}</p>
+                                    <p className='fs-5'>{content.shirts.astro.title}</p>
+                                    <div className="lh-sm">
+                                        {content.shirts.astro.content}<br/>
+                                        <Button className="mt-4">Shop Now</Button>
                                     </div>
                                 </div>
                             </div> :
-                                <div className="bg-white position-absolute w-30 h-60 top-10 start-10">
-                                    <div>
-                                        <p>{content.shirts.astro.feature}</p>
-                                        <p>{content.shirts.astro.title}</p>
-                                        <div>
-                                            {content.shirts.astro.content}
-                                            <Button>Shop Now</Button>
+                                <div className="bg-white position-absolute w-25 h-60 top-10 start-10">
+                                    <div className='text-center mt-5 p-2'>
+                                        <p className="fs-5">{content.shirts.astro.title}</p>
+                                        <p className="fs-1">{content.shirts.astro.feature}</p>
+                                        <div className="lh-xl">
+                                            {content.shirts.astro.content}<br/>
+                                            <Button className="mt-5">Shop Now</Button>
                                         </div>
                                     </div>
                                 </div>
@@ -95,10 +94,12 @@ export default function Landing({ blurHash, heroImg }) {
                 <Showcase productType="Accessories" />
             </div>
             <div className="text-center text-white bg-dark">
-                <Container>
-                    <Row>
-                        <h3>{content.copy.title}</h3>
-                        <p>{content.copy.text}</p>
+                <Container >
+                    <Row className="align-items-center">
+                        <h3 className='p-5 fs-1'>{content.copy.title}</h3>
+                        <Col className="px-5">
+                        <p className="lh-xl px-3 pt-3 pb-5 fs-4">{content.copy.text}</p>
+                        </Col>
                     </Row>
                 </Container>
             </div>
