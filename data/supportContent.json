@@ -1,0 +1,38 @@
+[
+    {
+        "title": "Payments",
+        "content": "We accept Visa, Mastercard, American Express, Apple Pay, Google Pay, Shop Pay, PayPal, Sezzle, and Bibisama gift cards."
+    },
+    {
+        "title": "How much are shipping costs?",
+        "content": "Any order over $50 qualifies for free shipping. Shipping on orders less than $50 will be calculated at checkout."
+    },
+    {
+        "title": "Do you ship internationally?",
+        "content": "Yes. Enter your shipping information during checkout, and the cost will be estimated based on your location. We are not responsible for any import, tax, or duty fees."
+    },
+    {
+        "title": "Do you have expedited shipping options?",
+        "content": "Depending on where you live, you may have the option to choose expedited shipping methods for additional costs."
+    },
+    {
+        "title": "When will my order ship?",
+        "content": "After placing your order, it will be marked as pending until it is carefully packaged and shipped. Once the order has shipped, you will be notified via e-mail and provided with a tracking number."
+    },
+    {
+        "title": "When will my order arrive?",
+        "content": "U.S. and Australia orders usually arrive 3-5 business days after being shipped. International orders typically take two weeks to arrive. You will receive a tracking number via email once your order ships."
+    },
+    {
+        "title": "Will I be provided with a tracking number?",
+        "content": "Yes. Once your order ships, we will email you the tracking number for your order."
+    },
+    {
+        "title": "Do you offer returns or refunds?",
+        "content": "Bibisama does not offer returns. Refunds will be provided only for products with manufacturing defects that were present before we ship your item. Our sizes for shirts, jackets, and sweaters will differ from what our customers may be used to, so please refer to our sizing chart in the item description before placing an order."
+    },
+    {
+        "title": "Do you offer exchanges?",
+        "content": "We’re happy to exchange sizes within 14 days of the customer receiving the product. The customer will be required to cover the return shipping cost. Upon receiving the returned item, we will ship out the replacement as soon as possible and provide a new tracking number. Please note for exchanges that the tag must still be attached, and the item cannot appear or smell used in any way. If the item you return appears to be used, we reserve the right to send the item back to the customer. To inquire about an exchange, please contact: ______."
+    }
+]
