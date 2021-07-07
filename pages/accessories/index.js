@@ -25,7 +25,7 @@ export default function Paintings ({ accessories, heroImg }) {
             <Head>
                 <title>Find your favourite accessories</title>
             </Head>
-            <ContentHeader image={image}/>
+            <ContentHeader image={image} productType='Accessories'/>
             <Layout products={accessories} category="accessories"/>
         </div>
     )

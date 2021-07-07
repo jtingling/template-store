@@ -4,7 +4,6 @@ import { getProductByType } from '../../components/Products/bl';
 import Layout from '../../components/Products/Layout'
 import ContentHeader from '../../components/ContentHeader';
 import { useClientWidth, useClientHeight } from '../../components/hooks';
-
 export async function getStaticProps() {
     const paintings = await getProductByType("PAINTING")
     const response = await unsplash.photos.getRandom({ collectionIds: ["936583"] });
@@ -18,19 +17,17 @@ export async function getStaticProps() {
     }
 }
 
-export default function Paintings ({ paintings, heroImg }) {
+export default function Paintings({ paintings, heroImg }) {
     const width = useClientWidth();
     const height = useClientHeight();
-    const image = heroImg + `&fit=crop&q=50&dpr=1&w=${width}&h=${(height/4)}`
+    const image = heroImg + `&fit=crop&q=50&dpr=1&w=${width}&h=${height}`
     return (
         <div>
             <Head>
                 <title>Find your favourite painting</title>
             </Head>
-            <ul>
-                <ContentHeader image={image}/>
-                <Layout products={paintings} category="paintings"/>
-            </ul>
+            <ContentHeader image={image} productType='Paintings' />
+            <Layout products={paintings} category="paintings" />
         </div>
     )
 }

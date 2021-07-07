@@ -25,7 +25,7 @@ export default function Shoes({ shoes, heroImg }) {
             <Head>
                 <title>Stylish shoes of all kinds</title>
             </Head>
-            <ContentHeader image={image}/>
+            <ContentHeader image={image} productType="Shoes"/>
             <Layout products={shoes} category="shoes" />
         </div>
     )
