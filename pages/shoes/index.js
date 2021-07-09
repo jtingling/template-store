@@ -4,19 +4,20 @@ import { getProductByType } from '../../components/Products/bl';
 import Layout from '../../components/Products/Layout'
 import ContentHeader from '../../components/ContentHeader';
 import { useClientWidth, useClientHeight } from '../../components/hooks';
+
 export async function getStaticProps() {
     const shoes = await getProductByType("SHOES")
     const response = await unsplash.photos.getRandom({ collectionIds: ["936583"] });
     const heroImg = await response.response.urls.raw;
-
     return {
         props: {
             shoes,
-            heroImg
+            heroImg,
+            blurHash: response.response.blur_hash
         },
     }
 }
-export default function Shoes({ shoes, heroImg }) {
+export default function Shoes({ shoes, heroImg, blurHash }) {
     const width = useClientWidth();
     const height = useClientHeight();
     const image = heroImg + `&fit=crop&q=50&dpr=1&w=${width}&h=${(height/4)}`
@@ -25,8 +26,9 @@ export default function Shoes({ shoes, heroImg }) {
             <Head>
                 <title>Stylish shoes of all kinds</title>
             </Head>
-            <ContentHeader image={image} productType="Shoes"/>
+            <ContentHeader image={image} productType="Shoes" blurhash={blurHash}/>
             <Layout products={shoes} category="shoes" />
         </div>
     )
 }
+
