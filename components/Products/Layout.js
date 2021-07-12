@@ -6,7 +6,7 @@ export default function Layout({ products, category }) {
     const [layoutItems, setLayoutItems] = useState(products);
     return (
         <Container >
-            <Row className='row justify-content-center'>
+            <Row className='row justify-content-evenly'>
                 {
                     layoutItems.map((item) => {
                      return <Product key={item.id} product={item} category={category} />

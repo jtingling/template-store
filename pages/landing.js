@@ -30,7 +30,7 @@ export default function Landing({ blurHash, heroImg }) {
 
     return (
         <div>
-            <div className="position-relative">
+            <div className="position-relative mt-5">
                 <Head>
                     <title>Welcome to "Store Name"!</title>
                     <meta property="og:title" content="Landing Page" key="title" />
