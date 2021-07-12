@@ -21,7 +21,6 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
     const accessory = await getProductByHandle(params.accessory)
-    console.log(accessory);
     return {
         props: {
             accessory

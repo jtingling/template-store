@@ -4,7 +4,7 @@ import ProductDescription from "../../components/Products/ProductDescription";
 
 export default function Painting( { painting }) {
     return (
-        <ProductDescription product={painting}/>
+        <ProductDescription key={painting.id} product={painting}/>
     )
 }
 
@@ -21,7 +21,6 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
     const painting = await getProductByHandle(params.painting)
-    console.log(painting);
     return {
         props: {
             painting
