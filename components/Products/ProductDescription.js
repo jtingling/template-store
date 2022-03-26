@@ -10,6 +10,7 @@ import Image from 'next/image'
 import { useState, useEffect, useContext } from 'react'
 import { addItemToCart, getCartIdFromStorage, buyNow } from '../../adapters/index';
 import { CartContext } from '../../contexts/App/index';
+import sizingChart from '/public/shirt_sizing_chart_480x480_12bf5e0b-48cd-40e5-8c04-bbb74429b713_480x480.png'
 
 export default function ProductDescription({ product }) {
     const [isDOpen, setIsDOpen] = useState(false)
@@ -110,7 +111,7 @@ export default function ProductDescription({ product }) {
                                         <Collapse in={isSOpen}>
                                             <div>
                                                 <p>
-                                                    <Image src="/public/shirt_sizing_chart_480x480_12bf5e0b-48cd-40e5-8c04-bbb74429b713_480x480.png" width="200" height="200" />
+                                                    <Image src={sizingChart} width="460" height="450" layout='responsive' alt="sizing chart" />
                                                 </p>
                                             </div>
                                         </Collapse>
