@@ -69,6 +69,7 @@ export default function Landing({ blurHash, heroImg, productListing }) {
       )}
       <FeaturedProduct />
       <HighlightProduct />
+      <br />
       <Showcase productType="Accessories" />
       <BrandingBlock />
     </div>

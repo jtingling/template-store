@@ -1,7 +1,4 @@
-@import "../node_modules/bootstrap/scss/functions";
-@import "../node_modules/bootstrap/scss/variables";
-@import "../node_modules/bootstrap/scss/utilities";
-
+@import "../node_modules/bootstrap/scss/bootstrap";
 $utilities: (
   "width": (
     property: width,
@@ -21,10 +18,10 @@ $utilities: (
       80: 80%,
       90: 90%,
       100: 100%,
-      auto: auto
-    )
+      auto: auto,
+    ),
   ),
-    "height": (
+  "height": (
     property: height,
     class: h,
     values: (
@@ -43,61 +40,76 @@ $utilities: (
       80: 80%,
       90: 90%,
       100: 100%,
-      auto: auto
-    )
+      auto: auto,
+    ),
+  ),
+  "opacity": (
+    property: opacity,
+    values: (
+      0: 0,
+      10: 0.1,
+      25: 0.25,
+      50: 0.5,
+      75: 0.75,
+      80: 0.8,
+      90: 0.9,
+      100: 1,
+    ),
   ),
 );
 
-
 $position-values: (
-    0: 0,
-    5: 5%,
-    10: 10%,
-    15: 15%,
-    20: 20%,
-    30: 30%,
-    40: 40%,
-    50: 50%,
-    60: 60%,
-    70: 70%,
-    80: 80%,
-    90: 90%,
-    100: 100%
+  0: 0,
+  5: 5%,
+  10: 10%,
+  15: 15%,
+  20: 20%,
+  30: 30%,
+  40: 40%,
+  50: 50%,
+  60: 60%,
+  70: 70%,
+  80: 80%,
+  90: 90%,
+  100: 100%,
 );
 
 // stylelint-disable value-keyword-case
-$font-family-sans-serif:      system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-$font-family-monospace:       SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+$font-family-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto,
+  "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
+  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+  "Liberation Mono", "Courier New", monospace;
 // stylelint-enable value-keyword-case
-$font-family-base:            var(--#{$variable-prefix}font-sans-serif);
-$font-family-code:            var(--#{$variable-prefix}font-monospace);
+$font-family-base: var(--#{$variable-prefix}font-sans-serif);
+$font-family-code: var(--#{$variable-prefix}font-monospace);
 
 // $font-size-root affects the value of `rem`, which is used for as well font sizes, paddings, and margins
 // $font-size-base affects the font size of the body text
-$font-size-root:              null;
-$font-size-base:              1rem; // Assumes the browser default, typically `16px`
-$font-size-sm:                $font-size-base * .875;
-$font-size-lg:                $font-size-base * 1.25;
+$font-size-root: null;
+$font-size-base: 1rem; // Assumes the browser default, typically `16px`
+$font-size-sm: $font-size-base * 0.875;
+$font-size-lg: $font-size-base * 1.25;
 
-$font-weight-lighter:         lighter;
-$font-weight-light:           300;
-$font-weight-normal:          400;
-$font-weight-bold:            700;
-$font-weight-bolder:          bolder;
+$font-weight-lighter: lighter;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+$font-weight-bolder: bolder;
 
-$font-weight-base:            $font-weight-normal;
+$font-weight-base: $font-weight-normal;
 
-$line-height-base:            1.5;
-$line-height-sm:              1.25;
-$line-height-lg:              2;
-$line-height-xl:              2.50;
+$line-height-base: 1.5;
+$line-height-sm: 1.25;
+$line-height-lg: 2;
+$line-height-xl: 2.5;
 
-$h1-font-size:                $font-size-base * 2.5;
-$h2-font-size:                $font-size-base * 2;
-$h3-font-size:                $font-size-base * 1.75;
-$h4-font-size:                $font-size-base * 1.5;
-$h5-font-size:                $font-size-base * 1.25;
-$h6-font-size:                $font-size-base;
+$h1-font-size: $font-size-base * 2.5;
+$h2-font-size: $font-size-base * 2;
+$h3-font-size: $font-size-base * 1.75;
+$h4-font-size: $font-size-base * 1.5;
+$h5-font-size: $font-size-base * 1.25;
+$h6-font-size: $font-size-base;
 
 $font-sizes: (
   1: $h1-font-size,
@@ -105,7 +117,7 @@ $font-sizes: (
   3: $h3-font-size,
   4: $h4-font-size,
   5: $h5-font-size,
-  6: $h6-font-size
+  6: $h6-font-size,
 );
 
 $utilities: map-merge(
@@ -115,42 +127,25 @@ $utilities: map-merge(
       rfs: true,
       property: font-size,
       class: fs,
-      values: $font-sizes
-    )
+      values: $font-sizes,
+    ),
   )
 );
-$utilities: map-merge(
-  $utilities,(
-  "line-height": (
-    property: line-height,
-    class: lh,
-    values: (
-      1: 1,
-      sm: $line-height-sm,
-      base: $line-height-base,
-      lg: $line-height-lg,
-      xl: $line-height-xl
-    )
-  )
-  )
-);
-
 $utilities: map-merge(
   $utilities,
   (
-    "opacity": (
-      property: opacity,
+    "line-height": (
+      property: line-height,
+      class: lh,
       values: (
-        0: 0,
-        25: .25,
-        50: .5,
-        75: .75,
-        100: 1,
-      )
-    )
+        1: 1,
+        sm: $line-height-sm,
+        base: $line-height-base,
+        lg: $line-height-lg,
+        xl: $line-height-xl,
+      ),
+    ),
   )
 );
 
-@debug $utilities;
-
-@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import "../node_modules/bootstrap/scss/bootstrap";

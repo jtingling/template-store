@@ -1,22 +1,18 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useClientWidth } from "../hooks";
 
 export default function Product({ product, category }) {
   const [isVisible, setIsVisible] = useState(false);
-  const showText = (visible) => {
-    if (visible) {
-      setIsVisible(visible);
-    } else {
-      setIsVisible(visible);
-    }
-  };
+  const width = useClientWidth();
+
   return (
     <div
       className="mx-3 my-1"
       style={{ width: 350 }}
-      onMouseOver={() => showText(true)}
-      onMouseOut={() => showText(false)}
+      onMouseOver={() => setIsVisible(true)}
+      onMouseOut={() => setIsVisible(false)}
     >
       <Link href={`/${category}/${product.handle}`}>
         <a>
@@ -28,10 +24,16 @@ export default function Product({ product, category }) {
           />
         </a>
       </Link>
-      {isVisible ? (
-        <p className="text-center text-wrap visible">{product.title}</p>
+      {width > 768 ? (
+        <p
+          className={`text-center text-wrap ${
+            isVisible ? "visible" : "invisible"
+          }`}
+        >
+          {product.title}
+        </p>
       ) : (
-        <p className="text-center text-wrap invisible">{product.title}</p>
+        <p className={`text-center text-wrap visible`}>{product.title}</p>
       )}
     </div>
   );

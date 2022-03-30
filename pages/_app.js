@@ -1,4 +1,3 @@
-//import 'bootstrap/dist/css/bootstrap.min.css';
 import "../styles/App.css";
 import Footer from "../components/Footer";
 import NavBar from "../components/Navs/NavBar";
@@ -29,7 +28,7 @@ function MyApp({ Component, pageProps }) {
   }, [checkout.lineItems]);
 
   return (
-    <>
+    <main className="vh-100">
       <NavBar />
       <CartContext.Provider
         value={{
@@ -38,11 +37,11 @@ function MyApp({ Component, pageProps }) {
           checkout: checkout,
         }}
       >
-        <Component {...pageProps} />
+        <Component {...pageProps} className="mw-100" />
         {router.pathname !== "/cart" && <Ribbon checkout={checkout} />}
-        <Footer />
       </CartContext.Provider>
-    </>
+      <Footer />
+    </main>
   );
 }
 

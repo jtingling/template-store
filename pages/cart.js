@@ -16,39 +16,37 @@ export default function Cart() {
     if (clientCheckout.checkout !== 0)
       lineItems = clientCheckout.checkout.lineItems.map((item) => {
         return (
-          <Row className="text-end p-1 align-items-center">
-            <Col className="text-start">
+          <Row key={item.id} className="text-end align-items-center">
+            <Col>
               <Image
                 src={item.variant.image.src}
-                width={100}
+                width={"100%"}
                 height={100}
                 layout="intrinsic"
               />
             </Col>
-            <Col className="text-start">
+            <Col className="text-start overflow-auto">
               <p>{item.variant.title}</p>
             </Col>
-            <Col>
+            <Col className="text-end">
               <p>${item.variant.price}</p>
             </Col>
             <Col>
-              <form>
-                <input
-                  type="number"
-                  min="0"
-                  max="10"
-                  name="quantity"
-                  value={item.quantity}
-                  onChange={async (e) => {
-                    const updatedCart = await updateCart(
-                      e,
-                      clientCheckout.checkout.id,
-                      item.id
-                    );
-                    clientCheckout.setCheckout(updatedCart);
-                  }}
-                />
-              </form>
+              <input
+                type="number"
+                min="0"
+                max="10"
+                name="quantity"
+                value={item.quantity}
+                onChange={async (e) => {
+                  const updatedCart = await updateCart(
+                    e,
+                    clientCheckout.checkout.id,
+                    item.id
+                  );
+                  clientCheckout.setCheckout(updatedCart);
+                }}
+              />
             </Col>
             <Col>
               <p>${item.quantity * item.variant.price}</p>
@@ -59,7 +57,7 @@ export default function Cart() {
     return lineItems;
   }
   return (
-    <div className="mt-5">
+    <div className="my-5">
       <Container>
         <Row>
           {" "}

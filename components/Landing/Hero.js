@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import Fade from "react-bootstrap/Fade";
 import { useState, useEffect } from "react";
 import { Blurhash } from "react-blurhash";
@@ -47,7 +48,11 @@ export default function Hero({ blurHash, image }) {
           <Container>
             <div className="text-center bg-dark text-white p-4 rounded opacity-75 ">
               <h1 className="opacity-100">Welcome to "Your ShopName here"!</h1>
-              <Button className="mt-3 opacity-100">Shop Shoes</Button>
+              <Link href="/shoes">
+                <a>
+                  <Button className="mt-3 opacity-100">Shop Shoes</Button>
+                </a>
+              </Link>
             </div>
           </Container>
         </Fade>
