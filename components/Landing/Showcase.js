@@ -14,7 +14,7 @@ export default function Showcase({ productType }) {
   }, []);
   return (
     <div className="mt-5">
-      <h2 className="text-center">Stylish {productType}</h2>
+      <h2 className="text-center mt-5">Stylish {productType}</h2>
       {product.length !== 0 ? (
         <Layout products={product} category="accessories" />
       ) : (
