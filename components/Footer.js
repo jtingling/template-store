@@ -20,29 +20,29 @@ export default function Footer() {
           </p>
         </Col>
         <Col sm={3} className="mb-5">
-          <Row className="text-center mb-2">
+          <Row className="text-center mb-2 ">
             <Col>
               <Row>
                 <h5>SHOP</h5>
               </Row>
               <Row>
                 <Link href="/landing">
-                  <a>Landing</a>
+                  <a className="link-secondary">Landing</a>
                 </Link>
               </Row>
               <Row>
                 <Link href="/shoes">
-                  <a>Shirts</a>
+                  <a className="link-secondary">Shoes</a>
                 </Link>
               </Row>
               <Row>
                 <Link href="/accessories">
-                  <a>Accessories</a>
+                  <a className="link-secondary">Accessories</a>
                 </Link>
               </Row>
               <Row>
                 <Link href="/paintings">
-                  <a>Paintings</a>
+                  <a className="link-secondary">Paintings</a>
                 </Link>
               </Row>
             </Col>
@@ -52,12 +52,12 @@ export default function Footer() {
               </Row>
               <Row>
                 <Link href="/support">
-                  <a>Support</a>
+                  <a className="link-secondary">Support</a>
                 </Link>
               </Row>
               <Row>
                 <Link href="/aboutus">
-                  <a>About Us</a>
+                  <a className="link-secondary">About Us</a>
                 </Link>
               </Row>
             </Col>

@@ -30,7 +30,9 @@ export default function Ribbon({ checkout }) {
             <Col>
               <Navbar.Text>
                 <Link href="/cart">
-                  <a>{calculateCartQuantity()} items</a>
+                  <a className="link-secondary">
+                    {calculateCartQuantity()} items
+                  </a>
                 </Link>
               </Navbar.Text>
             </Col>
