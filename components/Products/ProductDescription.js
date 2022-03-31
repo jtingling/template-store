@@ -30,9 +30,8 @@ export default function ProductDescription({ product }) {
   async function handleClick() {
     let clientCheckout = 0;
     try {
-      clientCheckout = await addItemToCart(checkoutContext.cartId, item);
+      clientCheckout = await addItemToCart(checkoutContext.checkout.id, item);
       checkoutContext.setCheckout(clientCheckout);
-      console.log(clientCheckout);
     } catch (e) {
       setIsError(true);
     }
@@ -76,10 +75,17 @@ export default function ProductDescription({ product }) {
               <p className="display-5">Size</p>
             </Col>
           </Row>
-          <Row sm={product.options[0].values}>
+          <Row
+            xs={4}
+            sm={product.options[0].values}
+            className="justify-content-center m-0 p-0"
+          >
             {product.options[0].values.map((size, idx) => {
               return (
-                <Col className="row justify-content-center m-0 ">
+                <Col
+                  key={size.value}
+                  className="row justify-content-center gy-1 "
+                >
                   <Button
                     variant="outline-dark"
                     className="w-50 px-0"
@@ -127,9 +133,7 @@ export default function ProductDescription({ product }) {
                     Description
                   </h3>
                   <Collapse in={isDOpen}>
-                    <div>
-                      <p>{product.descriptionHtml}</p>
-                    </div>
+                    <div>{product.descriptionHtml}</div>
                   </Collapse>
                 </Col>
                 <Col>
@@ -141,15 +145,13 @@ export default function ProductDescription({ product }) {
                   </h3>
                   <Collapse in={isSOpen}>
                     <div>
-                      <p>
-                        <Image
-                          src={sizingChart}
-                          width="460"
-                          height="450"
-                          layout="responsive"
-                          alt="sizing chart"
-                        />
-                      </p>
+                      <Image
+                        src={sizingChart}
+                        width="460"
+                        height="450"
+                        layout="responsive"
+                        alt="sizing chart"
+                      />
                     </div>
                   </Collapse>
                 </Col>
