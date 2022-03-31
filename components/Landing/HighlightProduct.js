@@ -17,11 +17,7 @@ export default function HighlightProduct() {
         <div className="text-center mt-5 p-2 w-80 mx-auto">
           <p className="fs-7">{content.shirts.astro.title}</p>
           <p className="fs-1">{content.shirts.astro.feature}</p>
-          <div className="lh-xl">
-            {content.shirts.astro.content}
-            <br />
-            <Button className="mt-3">Shop Now</Button>
-          </div>
+          <div className="lh-xl">{content.shirts.astro.content}</div>
         </div>
       </div>
     );
@@ -39,11 +35,7 @@ export default function HighlightProduct() {
         >
           <p className="fs-5">{content.shirts.astro.title}</p>
           <p className="fs-1">{content.shirts.astro.feature}</p>
-          <div className="lh-xl fs-6">
-            {content.shirts.astro.content}
-            <br />
-            <Button className="mt-3">Shop Now</Button>
-          </div>
+          <div className="lh-xl fs-6">{content.shirts.astro.content}</div>
         </div>
       </div>
     );
