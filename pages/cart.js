@@ -1,67 +1,27 @@
+import { useContext, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
+import LineItems from "../components/LineItems";
 import { CartContext } from "../contexts/App";
-import { useContext, useState } from "react";
 import { updateCart } from "../adapters/index";
 
 export default function Cart() {
-  const cartContext = useContext(CartContext);
+  const cart = useContext(CartContext);
 
-  function getLineItems(clientCheckout) {
-    let lineItems = <></>;
-    if (clientCheckout.checkout !== 0)
-      lineItems = clientCheckout.checkout.lineItems.map((item) => {
-        return (
-          <Row key={item.id} className="text-end align-items-center">
-            <Col>
-              <Image
-                src={item.variant.image.src}
-                width={"100%"}
-                height={100}
-                layout="intrinsic"
-              />
-            </Col>
-            <Col className="text-start overflow-auto">
-              <p>{item.variant.title}</p>
-            </Col>
-            <Col className="text-end">
-              <p>${item.variant.price}</p>
-            </Col>
-            <Col>
-              <input
-                type="number"
-                min="0"
-                max="10"
-                name="quantity"
-                value={item.quantity}
-                onChange={async (e) => {
-                  const updatedCart = await updateCart(
-                    e,
-                    clientCheckout.checkout.id,
-                    item.id
-                  );
-                  clientCheckout.setCheckout(updatedCart);
-                }}
-              />
-            </Col>
-            <Col>
-              <p>${item.quantity * item.variant.price}</p>
-            </Col>
-          </Row>
-        );
+  function renderLineItems(clientCheckout) {
+    if (clientCheckout.checkout.lineItems.length)
+      return clientCheckout.checkout.lineItems.map((item) => {
+        return <LineItems key={item.id} item={item} />;
       });
-    return lineItems;
   }
   return (
     <div className="my-5">
       <Container>
         <Row>
-          {" "}
-          {console.log(cartContext.checkout)}
           <Col className="text-center">
             <h1>CART</h1>
           </Col>
@@ -79,24 +39,22 @@ export default function Cart() {
             <p>Total</p>
           </Col>
         </Row>
-        {getLineItems(cartContext)}
+        {renderLineItems(cart)}
         <Row className="text-end border-top border-dark border-2 flex-column">
           <Col>
-            <p>Subtotal: ${cartContext.checkout.subtotalPrice}</p>
+            <p>Subtotal: ${cart.checkout.subtotalPrice}</p>
           </Col>
           <Col>
             <Button
               variant="dark"
-              onClick={() =>
-                window.location.replace(cartContext.checkout.webUrl)
-              }
+              onClick={() => window.location.replace(cart.checkout.webUrl)}
             >
               Checkout
             </Button>
           </Col>
           <Col>
             <Link href="/landing">
-              <a>continue shopping</a>
+              <a className="link-secondary">continue shopping</a>
             </Link>
           </Col>
         </Row>
