@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { useDebouncedCallback } from "use-debounce";
 import Image from "next/image";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -19,7 +18,7 @@ export default function LineItems({ item }) {
   };
 
   return (
-    <Row key={item.id} className="text-end">
+    <Row key={item.id} className="text-end align-items-center">
       <Col className="text-start">
         <Image
           src={item.variant.image.src}
@@ -45,7 +44,12 @@ export default function LineItems({ item }) {
         />
       </Col>
       <Col>
-        <p>${item.quantity * item.variant.price}</p>
+        <p>
+          $
+          {Math.round(
+            (item.quantity * item.variant.price + Number.EPSILON) * 100
+          ) / 100}
+        </p>
       </Col>
     </Row>
   );
