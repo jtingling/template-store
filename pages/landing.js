@@ -28,7 +28,7 @@ export async function getServerSideProps() {
     }
     heroImg = response.response.urls.raw;
   } catch (e) {
-    console.error(e);
+    console.error("There has been an error fetching data: ", e);
     response = false;
     heroImg = false;
   }
@@ -40,7 +40,7 @@ export async function getServerSideProps() {
   return {
     props: {
       blurHash: response ? response.response.blur_hash : "",
-      heroImg: heroImg,
+      heroImg,
       productListing,
     },
   };
@@ -62,11 +62,7 @@ export default function Landing({ blurHash, heroImg, productListing }) {
       ) : (
         <Hero blurHash={blurHash} image={image} />
       )}
-      {productListing.length ? (
-        <TopSelling product={productListing} />
-      ) : (
-        <Custom404 />
-      )}
+      {productListing && <TopSelling product={productListing} />}
       <FeaturedProduct />
       <HighlightProduct />
       <br />
