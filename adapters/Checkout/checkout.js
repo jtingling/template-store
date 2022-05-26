@@ -42,11 +42,12 @@ const buyNow = async (variantId) => {
 };
 
 const getCartFromStorage = async () => {
-  if (!window.localStorage) throw new Error("Browser unsupported.");
-  let cartId = window.localStorage.getItem("cart");
+  let storage = window.localStorage;
+  if (!storage) throw new Error("Browser unsupported.");
+  let cartId = storage.getItem("cart");
   if (!cartId) {
     await initCheckout();
   }
-  return window.localStorage.getItem("cart");
+  return storage.getItem("cart");
 };
 export { getCheckout, getCartFromStorage, initCheckout, buyNow };
