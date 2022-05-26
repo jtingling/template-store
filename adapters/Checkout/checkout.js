@@ -1,12 +1,21 @@
 import { client } from "../index";
 
 const createCheckout = async () => {
-  const checkout = await client.checkout.create();
-  return checkout.id;
+  return await client.checkout.create();
 };
 
 const getCheckout = async (checkoutId) => {
-  const checkout = await client.checkout.fetch(checkoutId);
+  let checkout;
+  try {
+    checkout = await client.checkout.fetch(checkoutId);
+    console.log(checkout);
+    if (!checkout) {
+      throw new Error("Problem fetching checkout API.");
+    }
+  } catch (e) {
+    console.error(e);
+  }
+
   return checkout;
 };
 
@@ -15,7 +24,7 @@ const initCheckout = async () => {
     let cart = await createCheckout();
     window.localStorage.setItem("cart", cart);
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 
@@ -32,11 +41,12 @@ const buyNow = async (variantId) => {
   return window.location.replace(newCheckout.webUrl);
 };
 
-const getCartIdFromStorage = async () => {
+const getCartFromStorage = async () => {
+  if (!window.localStorage) throw new Error("Browser unsupported.");
   let cartId = window.localStorage.getItem("cart");
   if (!cartId) {
     await initCheckout();
   }
   return window.localStorage.getItem("cart");
 };
-export { getCheckout, getCartIdFromStorage, initCheckout, buyNow };
+export { getCheckout, getCartFromStorage, initCheckout, buyNow };
