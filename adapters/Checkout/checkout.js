@@ -1,7 +1,8 @@
 import { client } from "../index";
 
 const createCheckout = async () => {
-  return await client.checkout.create();
+  const checkout = await client.checkout.create();
+  return checkout;
 };
 
 const getCheckout = async (checkoutId) => {
@@ -20,9 +21,12 @@ const getCheckout = async (checkoutId) => {
 };
 
 const initCheckout = async () => {
+  let cartId = window.localStorage.getItem("cart");
+  if (cartId) return await getCheckout(cartId);
   try {
     let cart = await createCheckout();
-    window.localStorage.setItem("cart", cart);
+    window.localStorage.setItem("cart", cart.id);
+    return await getCheckout(cart.id);
   } catch (err) {
     console.error(err);
   }
@@ -44,10 +48,6 @@ const buyNow = async (variantId) => {
 const getCartFromStorage = async () => {
   let storage = window.localStorage;
   if (!storage) throw new Error("Browser unsupported.");
-  let cartId = storage.getItem("cart");
-  if (!cartId) {
-    await initCheckout();
-  }
-  return storage.getItem("cart");
+  return await initCheckout();
 };
 export { getCheckout, getCartFromStorage, initCheckout, buyNow };

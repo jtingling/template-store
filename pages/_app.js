@@ -6,22 +6,20 @@ import Footer from "../components/Footer";
 import NavBar from "../components/Navs/NavBar";
 import Ribbon from "../components/Navs/Ribbon";
 import { CartContext } from "../contexts/App";
-import { getCartIdFromStorage, getCheckout } from "../adapters";
+import { getCartFromStorage } from "../adapters/Checkout/checkout";
 
 function MyApp({ Component, pageProps }) {
   const [checkout, setCheckout] = useState({ lineItems: [] });
   const router = useRouter();
 
   const initCheckout = async () => {
-    const id = await getCartIdFromStorage();
-    const clientCheckout = await getCheckout(id);
-    setCheckout(clientCheckout);
+    const cart = await getCartFromStorage();
+    setCheckout(cart);
   };
 
   useEffect(() => {
     initCheckout();
   }, []);
-
   return (
     <SSRProvider>
       <main className="overflow-hidden">
