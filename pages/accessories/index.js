@@ -5,6 +5,10 @@ import Layout from "../../components/Products/Layout";
 import ContentHeader from "../../components/ContentHeader";
 import { useClientWidth, useClientHeight } from "../../components/hooks";
 
+const accessoriesConfig = {
+  title: "Find your favourite accessories",
+};
+
 export async function getStaticProps() {
   const accessories = await getProductByType("ACCESSORIES");
   const response = await unsplash.photos.getRandom({
@@ -20,14 +24,14 @@ export async function getStaticProps() {
   };
 }
 
-export default function Paintings({ accessories, heroImg, blurHash }) {
+export default function Accessories({ accessories, heroImg, blurHash }) {
   const width = useClientWidth();
   const height = useClientHeight();
   const image = heroImg + `&fit=crop&q=50&dpr=1&w=${width}&h=${height}`;
   return (
     <div>
       <Head>
-        <title>Find your favourite accessories</title>
+        <title>{paintingsConfig.title}</title>
       </Head>
       <ContentHeader
         image={image}
