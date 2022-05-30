@@ -3,6 +3,16 @@ import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Nav from "react-bootstrap/Nav";
 import { useClientWidth } from "../hooks";
+
+const navBarConfig = {
+  landing: "Landing",
+  shoes: "Shoes",
+  accessories: "Accessories",
+  paintings: "Paintings",
+  support: "Support",
+  aboutUs: "About Us",
+};
+
 export default function NavBar() {
   const width = useClientWidth();
   const renderResponsiveNavBar = () => {
@@ -10,22 +20,22 @@ export default function NavBar() {
       return (
         <Nav>
           <Nav.Item>
-            <Nav.Link href="/landing">Landing</Nav.Link>
+            <Nav.Link href="/landing">{navBarConfig.landing}</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link href="/shoes">Shoes</Nav.Link>
+            <Nav.Link href="/shoes">{navBarConfig.shoes}</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link href="/accessories">Accessories</Nav.Link>
+            <Nav.Link href="/accessories">{navBarConfig.accessories}</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link href="/paintings">Paintings</Nav.Link>
+            <Nav.Link href="/paintings">{navBarConfig.paintings}</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link href="/support">Support</Nav.Link>
+            <Nav.Link href="/support">{navBarConfig.support}</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link href="/aboutus">About Us</Nav.Link>
+            <Nav.Link href="/aboutus">{navBarConfig.aboutUs}</Nav.Link>
           </Nav.Item>
         </Nav>
       );
@@ -39,12 +49,16 @@ export default function NavBar() {
           navbar="true"
           key="up"
         >
-          <Dropdown.Item href="/landing">Landing</Dropdown.Item>
-          <Dropdown.Item href="/shoes">Shoes</Dropdown.Item>
-          <Dropdown.Item href="/accessories">Accessories</Dropdown.Item>
-          <Dropdown.Item href="/paintings">Paintings</Dropdown.Item>
-          <Dropdown.Item href="/support">Support</Dropdown.Item>
-          <Dropdown.Item href="/aboutus">About Us</Dropdown.Item>
+          <Dropdown.Item href="/landing">{navBarConfig.landing}</Dropdown.Item>
+          <Dropdown.Item href="/shoes">{navBarConfig.shoes}</Dropdown.Item>
+          <Dropdown.Item href="/accessories">
+            {navBarConfig.accessories}
+          </Dropdown.Item>
+          <Dropdown.Item href="/paintings">
+            {navBarConfig.paintings}
+          </Dropdown.Item>
+          <Dropdown.Item href="/support">{navBarConfig.support}</Dropdown.Item>
+          <Dropdown.Item href="/aboutus">{navBarConfig.aboutUs}</Dropdown.Item>
         </DropdownButton>
       );
     }
