@@ -3,6 +3,15 @@ import Navbar from "react-bootstrap/Navbar";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import { useClientWidth } from "../hooks";
+
+const menuConfig = {
+  landing: "Landing",
+  shoes: "Shoes",
+  accessories: "Accessories",
+  paintings: "Paintings",
+  support: "Support",
+  aboutUs: "About Us",
+};
 export default function Menu({ type }) {
   const width = useClientWidth();
 
@@ -24,12 +33,22 @@ export default function Menu({ type }) {
               navbar="true"
               key="up"
             >
-              <Dropdown.Item href="/landing">Landing</Dropdown.Item>
-              <Dropdown.Item href="/shoes">Shoes</Dropdown.Item>
-              <Dropdown.Item href="/accessories">Accessories</Dropdown.Item>
-              <Dropdown.Item href="/paintings">Paintings</Dropdown.Item>
-              <Dropdown.Item href="/support">Support</Dropdown.Item>
-              <Dropdown.Item href="/aboutus">About Us</Dropdown.Item>
+              <Dropdown.Item href="/landing">
+                {menuConfig.landing}
+              </Dropdown.Item>
+              <Dropdown.Item href="/shoes">{menuConfig.shoes}</Dropdown.Item>
+              <Dropdown.Item href="/accessories">
+                {menuConfig.accessories}
+              </Dropdown.Item>
+              <Dropdown.Item href="/paintings">
+                {menuConfig.paintings}
+              </Dropdown.Item>
+              <Dropdown.Item href="/support">
+                {menuConfig.support}
+              </Dropdown.Item>
+              <Dropdown.Item href="/aboutus">
+                {menuConfig.aboutUs}
+              </Dropdown.Item>
             </DropdownButton>
           </Nav>
         </Navbar>

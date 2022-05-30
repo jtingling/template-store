@@ -8,6 +8,11 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import { useClientHeight, useClientWidth } from "../hooks";
 
+const heroConfig = {
+  title: "Welcome to 'Your ShopName here'!",
+  subTitle: "Shop Shoes",
+};
+
 export default function Hero({ blurHash, image }) {
   const [hero, setHero] = useState(false);
   const [loadImg, setLoadImg] = useState(false);
@@ -48,11 +53,11 @@ export default function Hero({ blurHash, image }) {
         <Fade in={loadImg && hero} timeout={2000}>
           <Container>
             <div className="text-center bg-dark text-white p-4 rounded opacity-75 ">
-              <h1>Welcome to "Your ShopName here"!</h1>
+              <h1>{heroConfig.title}</h1>
               <Link href="/shoes">
                 <a>
                   <Button className="mt-3 opacity-100" variant="secondary">
-                    Shop Shoes
+                    {heroConfig.subTitle}
                   </Button>
                 </a>
               </Link>
