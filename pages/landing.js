@@ -24,7 +24,7 @@ export async function getServerSideProps() {
       collectionIds: ["936583"],
     });
     if (response.message === "expected JSON response from server.") {
-      throw "Used up allotted requests this hour.";
+      throw new Error("Used up allotted requests this hour.");
     }
     heroImg = response.response.urls.raw;
   } catch (e) {

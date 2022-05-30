@@ -1,15 +1,13 @@
 import Container from "react-bootstrap/Container";
-
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
 import Link from "next/link";
 import { useClientWidth } from "../hooks";
-import { useEffect } from "react";
+
 export default function Ribbon({ checkout }) {
   const width = useClientWidth();
-
   const calculateCartQuantity = () => {
     if (checkout.lineItems.length !== 0) {
       let total = 0;
@@ -20,7 +18,7 @@ export default function Ribbon({ checkout }) {
 
   return (
     <>
-      {checkout.lineItems.length !== 0 ? (
+      {checkout.lineItems.length > 0 ? (
         <Container className="fixed-bottom mw-100 bg-dark text-white p-2 ">
           <Row
             className={`d-flex justify-content-center text-center align-items-center ${
