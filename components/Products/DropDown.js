@@ -1,5 +1,10 @@
 import Accordion from "react-bootstrap/Accordion";
 import style from "./[drop-down].module.css";
+
+const dropDownConfig = {
+  description: "Description",
+};
+
 export default function DropDown({ product, children, idx }) {
   return (
     <>
@@ -9,7 +14,7 @@ export default function DropDown({ product, children, idx }) {
             product.title
           ) : (
             <h6 className={`border-bottom border-dark ${style.beta} `}>
-              Description
+              {dropDownConfig.description}
             </h6>
           )}
         </Accordion.Header>

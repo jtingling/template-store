@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/styles
 /.pnp
 .pnp.js
 
@@ -18,6 +19,7 @@
 # misc
 .DS_Store
 *.pem
+*.css
 
 # debug
 npm-debug.log*

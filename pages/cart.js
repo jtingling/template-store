@@ -1,5 +1,4 @@
-import { useContext, useState } from "react";
-import Image from "next/image";
+import { useContext } from "react";
 import Link from "next/link";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
@@ -7,8 +6,16 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import LineItems from "../components/LineItems";
 import { CartContext } from "../contexts/App";
-import { updateCart } from "../adapters/index";
 
+const cartConfig = {
+  cart: "CART",
+  price: "Price",
+  quantity: "Quantity",
+  total: "Total",
+  subTotal: "Subtotal",
+  checkout: "Checkout",
+  continue: "continue",
+};
 export default function Cart() {
   const cart = useContext(CartContext);
 
@@ -23,38 +30,40 @@ export default function Cart() {
       <Container>
         <Row>
           <Col className="text-center">
-            <h1>CART</h1>
+            <h1>{cartConfig.cart}</h1>
           </Col>
         </Row>
         <Row className="text-end border-bottom border-dark border-2">
           <Col />
           <Col />
           <Col>
-            <p>Price</p>
+            <p>{cartConfig.price}</p>
           </Col>
           <Col>
-            <p>Quantity</p>
+            <p>{cartConfig.quantity}</p>
           </Col>
           <Col>
-            <p>Total</p>
+            <p>{cartConfig.total}</p>
           </Col>
         </Row>
         {renderLineItems(cart)}
         <Row className="text-end border-top border-dark border-2 flex-column">
           <Col>
-            <p>Subtotal: ${cart.checkout.subtotalPrice}</p>
+            <p>
+              {cartConfig.subTotal}: ${cart.checkout.subtotalPrice}
+            </p>
           </Col>
           <Col>
             <Button
               variant="dark"
               onClick={() => window.location.replace(cart.checkout.webUrl)}
             >
-              Checkout
+              {cartConfig.checkout}
             </Button>
           </Col>
           <Col>
             <Link href="/landing">
-              <a className="link-secondary">continue shopping</a>
+              <a className="link-secondary">{cartConfig.continue}</a>
             </Link>
           </Col>
         </Row>

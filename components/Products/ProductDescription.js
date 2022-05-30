@@ -11,6 +11,14 @@ import ProductDetail from "./ProductDetail";
 import { addItemToCart, buyNow } from "../../adapters/index";
 import { CartContext } from "../../contexts/App/index";
 
+const productDescriptionConfig = {
+  shipping: "Shipping calculated at checkout.",
+  size: "Size",
+  addToCart: "Add To Cart",
+  buyItNow: "Buy It Now",
+  pleaseSelectSize: "Please select a size",
+};
+
 export default function ProductDescription({ product }) {
   const [item, setItem] = useState(null);
   const [isError, setIsError] = useState(false);
@@ -90,11 +98,11 @@ export default function ProductDescription({ product }) {
             </Col>
             <Col className="m-1">
               <span className="display-7">
-                <strong>Shipping calculated at checkout</strong>
+                <strong>{productDescriptionConfig.shipping}</strong>
               </span>
             </Col>
             <Col className="m-1">
-              <p className="display-5">Size</p>
+              <p className="display-5">{productDescriptionConfig.size}</p>
             </Col>
           </Row>
           <Row
@@ -110,7 +118,7 @@ export default function ProductDescription({ product }) {
               className="my-3 py-3 px-0 mx-0"
               onClick={handleClick}
             >
-              Add To Cart
+              {productDescriptionConfig.addToCart}
             </Button>
             <Button
               variant="dark"
@@ -123,7 +131,7 @@ export default function ProductDescription({ product }) {
                 }
               }}
             >
-              Buy It Now
+              {productDescriptionConfig.buyItNow}
             </Button>
           </Row>
           <Row
@@ -143,7 +151,7 @@ export default function ProductDescription({ product }) {
           key={product.id}
           variant="warning"
         >
-          Please select a size
+          {productDescriptionConfig.pleaseSelectSize}
         </Alert>
       </Navbar>
     </Container>

@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Custom404 from "../../pages/404";
 import Product from "../Products/Product";
-import { getSingleProduct } from "../../adapters/index";
 
 export default function TopSelling({ product }) {
   const renderTopSellers = () => {

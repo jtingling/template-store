@@ -4,6 +4,10 @@ import Button from "react-bootstrap/Button";
 import { useClientWidth, useClientHeight } from "../hooks";
 import content from "../../data/descriptions.json";
 
+const {
+  shirts: { astro },
+} = content;
+
 export default function HighlightProduct() {
   const width = useClientWidth();
   const height = useClientHeight();
@@ -15,9 +19,9 @@ export default function HighlightProduct() {
         className="bg-white position-absolute top-0 opacity-75 overflow-auto "
       >
         <div className="text-center mt-5 p-2 w-80 mx-auto">
-          <p className="fs-7">{content.shirts.astro.title}</p>
-          <p className="fs-1">{content.shirts.astro.feature}</p>
-          <div className="lh-xl">{content.shirts.astro.content}</div>
+          <p className="fs-7">{astro.title}</p>
+          <p className="fs-1">{astro.feature}</p>
+          <div className="lh-xl">{astro.content}</div>
         </div>
       </div>
     );
@@ -33,9 +37,9 @@ export default function HighlightProduct() {
           className="text-center mt-1 p-2 w-60 mx-auto"
           style={{ height: `calc(${height} / 2)` }}
         >
-          <p className="fs-5">{content.shirts.astro.title}</p>
-          <p className="fs-1">{content.shirts.astro.feature}</p>
-          <div className="lh-xl fs-6">{content.shirts.astro.content}</div>
+          <p className="fs-5">{astro.title}</p>
+          <p className="fs-1">{astro.feature}</p>
+          <div className="lh-xl fs-6">{astro.content}</div>
         </div>
       </div>
     );
