@@ -1,7 +1,7 @@
-export { client, unsplash, getClient } from "./clientInit";
+export { client, unsplash } from "./clientInit";
 export {
   getCheckout,
-  getCartIdFromStorage,
+  getCartFromStorage,
   initCheckout,
   buyNow,
 } from "./Checkout/checkout";
