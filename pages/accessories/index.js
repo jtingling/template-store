@@ -31,7 +31,7 @@ export default function Accessories({ accessories, heroImg, blurHash }) {
   return (
     <div>
       <Head>
-        <title>{paintingsConfig.title}</title>
+        <title>{accessoriesConfig.title}</title>
       </Head>
       <ContentHeader
         image={image}
